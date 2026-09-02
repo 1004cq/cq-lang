@@ -1,0 +1,2 @@
+let answer: Int = "forty-two"
+print(answer)
