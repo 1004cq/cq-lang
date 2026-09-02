@@ -1,0 +1,28 @@
+import fs
+import json
+import task
+
+print("CQ ABC")
+
+fn add(a: Int, b: Int) -> Int {
+  a + b
+}
+
+print(add(20, 22))
+
+fn div(a: Int, b: Int) -> Result {
+  if b == 0 {
+    return Err("div by zero")
+  }
+  Ok(a / b)
+}
+
+match div(10, 2) {
+  Ok(v) => print(v)
+  Err(e) => print(e)
+}
+
+let text = json.encode([1, 2, 3])
+print(text)
+
+print(task.await(task.spawn(fn() { 1 + 2 })))
