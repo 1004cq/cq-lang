@@ -1,0 +1,46 @@
+print("CQ online")
+print("hello CQ")
+
+let name = "world"
+print("hi, {name}")
+
+fn add(a: Int, b: Int) -> Int {
+  a + b
+}
+
+print(add(20, 26))
+
+fn square(n: Int) -> Int {
+  n * n
+}
+
+print(square(12))
+
+fn div(a: Int, b: Int) -> Result {
+  if b == 0 {
+    return Err("div by zero")
+  }
+  Ok(a / b)
+}
+
+match div(100, 4) {
+  Ok(v) => print("100 / 4 = {v}")
+  Err(e) => print(e)
+}
+
+match div(100, 0) {
+  Ok(v) => print(v)
+  Err(e) => print(e)
+}
+
+mut n = 1
+n = n + 41
+print(n)
+
+type User {
+  name: Str
+  age: Int
+}
+
+let u = User { name: "CQ", age: 1 }
+print(u.name)

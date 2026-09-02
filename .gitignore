@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.cq.py
+*.o
+hello_native
+cq_native
+.DS_Store
+.venv/

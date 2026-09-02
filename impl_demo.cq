@@ -1,0 +1,17 @@
+iface Show {
+  fn show(self) -> Str
+}
+
+type User {
+  name: Str
+  age: Int
+}
+
+impl Show for User {
+  fn show(self) -> Str {
+    self.name
+  }
+}
+
+let u = User { name: "CQ", age: 1 }
+print(u.show())

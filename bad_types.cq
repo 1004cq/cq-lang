@@ -1,0 +1,13 @@
+fn add(a: Int, b: Int) -> Int {
+  a + b
+}
+
+let x: Int = "not a number"
+
+fn maybe(n: Int) -> Result {
+  Ok(n)
+}
+
+match maybe(1) {
+  Ok(v) => print(v)
+}

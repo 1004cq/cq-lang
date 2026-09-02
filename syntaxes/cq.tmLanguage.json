@@ -1,0 +1,21 @@
+{
+  "name": "CQ",
+  "scopeName": "source.cq",
+  "fileTypes": ["cq"],
+  "patterns": [
+    { "name": "comment.line.double-slash.cq", "match": "//.*$" },
+    { "name": "comment.line.number-sign.cq", "match": "#.*$" },
+    {
+      "name": "keyword.control.cq",
+      "match": "\\b(let|mut|fn|if|else|return|match|type|iface|impl|for|in|import|print)\\b"
+    },
+    { "name": "constant.language.cq", "match": "\\b(true|false|None|Ok|Err|Some)\\b" },
+    { "name": "storage.type.cq", "match": "\\b(Int|Float|Str|Bool|List|Result|Option)\\b" },
+    { "name": "string.quoted.double.cq", "begin": "\"", "end": "\"", "patterns": [
+      { "name": "constant.character.escape.cq", "match": "\\\\." },
+      { "name": "variable.other.interpolated.cq", "match": "\\{[^}]+\\}" }
+    ]},
+    { "name": "keyword.operator.cq", "match": "(|>|=>|->|==|!=|<=|>=)" },
+    { "name": "constant.numeric.cq", "match": "\\b[0-9]+(\\.[0-9]+)?\\b" }
+  ]
+}

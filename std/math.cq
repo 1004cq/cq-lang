@@ -1,0 +1,24 @@
+fn abs(n: Int) -> Int {
+  if n < 0 {
+    return 0 - n
+  }
+  return n
+}
+
+fn max(a: Int, b: Int) -> Int {
+  if a > b {
+    return a
+  }
+  return b
+}
+
+fn min(a: Int, b: Int) -> Int {
+  if a < b {
+    return a
+  }
+  return b
+}
+
+fn pow2(n: Int) -> Int {
+  return n * n
+}

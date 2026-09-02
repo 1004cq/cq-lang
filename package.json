@@ -1,0 +1,25 @@
+{
+  "name": "cq-language",
+  "displayName": "CQ Language",
+  "description": "Syntax highlighting for the CQ programming language",
+  "version": "0.3.0",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "cq",
+        "aliases": ["CQ", "cq"],
+        "extensions": [".cq"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cq",
+        "scopeName": "source.cq",
+        "path": "./syntaxes/cq.tmLanguage.json"
+      }
+    ]
+  }
+}

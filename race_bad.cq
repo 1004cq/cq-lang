@@ -1,0 +1,3 @@
+import task
+mut secret = 1
+task.spawn(fn() { secret + 1 })

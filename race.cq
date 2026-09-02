@@ -1,0 +1,3 @@
+import task
+let a = 10
+print(task.await(task.spawn(fn() { a + 1 })))

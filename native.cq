@@ -1,0 +1,17 @@
+print("CQ native")
+
+fn add(a: Int, b: Int) -> Int {
+  a + b
+}
+
+fn twice(n: Int) -> Int {
+  n * 2
+}
+
+let x = add(20, 22)
+print(x)
+print(twice(21))
+
+if x > 40 {
+  print("ok")
+}
