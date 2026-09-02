@@ -1,0 +1,15 @@
+import web
+
+web.title("CQ 前端")
+web.html("#app", "<h1>CQ Frontend</h1><p>用 CQ 写的计数器</p><div id='n'>0</div><button id='btn'>点我 +1</button>")
+
+mut n = 0
+web.text("#n", str(n))
+
+web.on("#btn", "click", fn() {
+  n = n + 1
+  web.text("#n", str(n))
+  print("点击 {n} 次")
+})
+
+print("前端已就绪")

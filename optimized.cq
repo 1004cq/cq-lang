@@ -1,0 +1,54 @@
+// CQ 0.4
+print("CQ optimized")
+
+fn parse_n(s: Str) -> Result {
+  if s == "bad" {
+    return Err("不是数字")
+  }
+  Ok(42)
+}
+
+fn load() -> Result {
+  let n = parse_n("ok")?
+  Ok(n + 1)
+}
+
+match load() {
+  Ok(v) => print("Rust? 运算符：{v}")
+  Err(e) => print(e)
+}
+
+let 名字 = None ?? "CQ"
+print("JS?? 默认值：{名字}")
+
+let x = 10
+if x > 100 {
+  print("大")
+} else if x > 5 {
+  print("Python else if：中")
+} else {
+  print("小")
+}
+
+if x > 0 and x < 20 {
+  print("Python and：通过")
+}
+
+if false or true {
+  print("Python or：通过")
+}
+
+if not false {
+  print("Python not：通过")
+}
+
+mut i = 0
+while i < 3 {
+  print(i)
+  i = i + 1
+}
+
+[1, 2, 3, 4]
+  |> filter(fn(n) { n > 2 })
+  |> map(fn(n) { n * 10 })
+  |> print

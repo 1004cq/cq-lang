@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cq-lang"
+version = "0.4.0"
+description = "CQ programming language"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+[project.scripts]
+cq = "cq:main_entry"
+
+[tool.setuptools]
+py-modules = ["cq", "cq_rt", "cq_cgen", "cq_js"]
+include-package-data = true
