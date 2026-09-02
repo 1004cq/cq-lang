@@ -1,23 +1,14 @@
-# CQ
+# CQ language
 
-CQ 是一门小语言：默认不可变、用 Result 处理错误、能跑解释器，也能编成 C 再交给 gcc。
+Interpreter + Python/C/JS backends.
 
-```cq
-print("hello CQ")
-
-fn add(a: Int, b: Int) -> Int {
-  a + b
-}
-```
-
-## 运行
+Full interpreter source is on branch `full-source`.
 
 ```bash
+git clone -b full-source https://github.com/1004cq/cq-lang.git
+cd cq-lang
+python3 restore_cq.py
 python3 cq.py run hello.cq
-python3 cq.py check bad_types.cq
-python3 cq.py build hello.cq
-python3 cq.py native native.cq ./hello_native
-python3 cq.py pkg init myapp
 ```
 
-MIT License
+Do not use this repo for the IM app (`1004cq/cq`).
