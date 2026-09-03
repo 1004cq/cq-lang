@@ -1,15 +1,29 @@
 import web
 
-web.title("CQ 前端")
-web.html("#app", "<h1>CQ Frontend</h1><p>用 CQ 写的计数器</p><div id='n'>0</div><button id='btn'>点我 +1</button>")
+web.title("CQ · 浏览器里的小语言")
+web.html("#app", '<main class="shell"><div class="bar"><span class="dot"></span>cq / web demo</div><section class="content"><p class="eyebrow">Compiled from CQ</p><h1>小语言，也能认真做网页。</h1><p class="intro">这个计数器由 CQ 源码管理状态与事件，再编译成浏览器可以运行的 JavaScript。</p><div class="counter"><div><p class="label">当前计数</p><div id="count" aria-live="polite">0</div></div><div class="actions"><button id="minus" class="action" aria-label="减一">−</button><button id="reset" class="action" aria-label="归零">归零</button><button id="plus" class="action primary" aria-label="加一">＋</button></div></div><div class="hint"><span>mut count = 0</span><span>web.on · web.text</span></div></section></main>')
 
-mut n = 0
-web.text("#n", str(n))
+mut count = 0
+web.text("#count", str(count))
 
-web.on("#btn", "click", fn() {
-  n = n + 1
-  web.text("#n", str(n))
-  print("点击 {n} 次")
+web.on("#plus", "click", fn() {
+  count = count + 1
+  web.text("#count", str(count))
+  print("count = {count}")
+})
+
+web.on("#minus", "click", fn() {
+  if count > 0 {
+    count = count - 1
+  }
+  web.text("#count", str(count))
+  print("count = {count}")
+})
+
+web.on("#reset", "click", fn() {
+  count = 0
+  web.text("#count", str(count))
+  print("count = 0")
 })
 
 print("前端已就绪")

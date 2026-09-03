@@ -1,6 +1,8 @@
 """CQ -> JavaScript compiler for frontend."""
 from __future__ import annotations
-import json, os
+import json
+import os
+import shutil
 
 def js_str(s: str) -> str:
     return json.dumps(s, ensure_ascii=False)
@@ -121,7 +123,15 @@ def compile_to_js(tree, src_name="app.cq") -> str:
     return "\n".join(lines) + "\n"
 
 def wrap_html(title: str, js_name: str = "app.js") -> str:
-    return "<!doctype html><html lang=zh-CN><head><meta charset=utf-8><title>"+title+"</title></head><body><div id=app></div><pre id=log></pre><script src=cq_rt.js></script><script src="+js_name+"></script></body></html>\n"
+    safe_title = title.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    return (
+        "<!doctype html><html lang=\"zh-CN\"><head><meta charset=\"utf-8\">"
+        "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
+        "<meta name=\"description\" content=\"由 CQ 编译到 JavaScript 的交互网页\">"
+        f"<title>{safe_title}</title><link rel=\"stylesheet\" href=\"style.css\"></head>"
+        f"<body><div id=\"app\"></div><pre id=\"log\" aria-label=\"CQ 输出\"></pre>"
+        f"<script src=\"cq_rt.js\"></script><script src=\"{js_name}\"></script></body></html>\n"
+    )
 
 def build_web(tree, out_dir: str, src_name="app.cq", title="CQ"):
     os.makedirs(out_dir, exist_ok=True)
@@ -129,10 +139,13 @@ def build_web(tree, out_dir: str, src_name="app.cq", title="CQ"):
     rt_src = os.path.join(here, "web", "cq_rt.js")
     with open(rt_src, "r", encoding="utf-8") as f:
         rt = f.read()
+    style_src = os.path.join(here, "web", "style.css")
     with open(os.path.join(out_dir, "cq_rt.js"), "w", encoding="utf-8") as f:
         f.write(rt)
     with open(os.path.join(out_dir, "app.js"), "w", encoding="utf-8") as f:
         f.write(compile_to_js(tree, src_name))
     with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(wrap_html(title))
+    if os.path.exists(style_src):
+        shutil.copyfile(style_src, os.path.join(out_dir, "style.css"))
     return os.path.join(out_dir, "index.html")
