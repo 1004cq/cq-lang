@@ -104,9 +104,17 @@ def compile_stmt(node, env="_e") -> str:
         for pat, body in node[2]:
             b = compile_expr(body, env) if body[0] != "block" else compile_block(body, env)
             if pat[0] == "ctor" and pat[1] == "Ok":
-                arms.append(f"(_r.ok ? (function(){{ const {env} = Object.assign({{}}, {env}, {{{js_str(pat[2])}: _r.value}}); return {b}; }})() : undefined)")
+                arms.append(
+                    f"(_r.ok ? (function(_cq_parent){{ const {env} = "
+                    f"Object.assign(Object.create(_cq_parent), {{{js_str(pat[2])}: _r.value}}); "
+                    f"return {b}; }})({env}) : undefined)"
+                )
             elif pat[0] == "ctor" and pat[1] == "Err":
-                arms.append(f"(!_r.ok ? (function(){{ const {env} = Object.assign({{}}, {env}, {{{js_str(pat[2])}: _r.value}}); return {b}; }})() : undefined)")
+                arms.append(
+                    f"(!_r.ok ? (function(_cq_parent){{ const {env} = "
+                    f"Object.assign(Object.create(_cq_parent), {{{js_str(pat[2])}: _r.value}}); "
+                    f"return {b}; }})({env}) : undefined)"
+                )
             else:
                 arms.append(b)
         chain = " ?? ".join(arms) if arms else "null"

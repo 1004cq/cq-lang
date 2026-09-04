@@ -1,0 +1,9 @@
+// 浏览器后端也使用同一套 Result + match 错误处理。
+fn save_text() -> Result {
+  Ok("文本已保存")
+}
+
+match save_text() {
+  Ok(message) => print(message)
+  Err(error) => print("保存失败：{error}")
+}
